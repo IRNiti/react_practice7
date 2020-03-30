@@ -28,9 +28,24 @@ class AddUser extends React.Component {
 	render(){
     	return(
         	<form>
-          		<input type='text' name='firstName' value={this.state.firstName} onChange={this.handleFieldChange}/>
-      			<input type='text' name='lastName' value={this.state.lastName} onChange={this.handleFieldChange}/>
-				<input type='text' name='username' value={this.state.username} onChange={this.handleFieldChange} />
+          		<input 
+             		type='text' 
+             		name='firstName' 
+             		placeholder='First Name' 
+             		value={this.state.firstName} 
+            		onChange={this.handleFieldChange}/>
+      			<input 
+					type='text' 
+					name='lastName'
+					placeholder='Last Name'
+					value={this.state.lastName} 
+					onChange={this.handleFieldChange}/>
+				<input 
+					type='text' 
+					name='username' 
+					placeholder='Username'
+					value={this.state.username} 
+					onChange={this.handleFieldChange} />
 				<button disabled={this.state.buttonDisabled} onClick={this.handleAddUser}>AddUser</button>
           	</form>
         )
