@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import AddUser from './AddUser';
 import UserList from './UserList';
+import ErrorMessage from './ErrorMessage';
 
 /*
 This exercise will help you put together and practice all of the concepts you've
@@ -26,7 +27,8 @@ class App extends Component {
       	'lastName': 'Crisan',
       	'username': 'corgi',
       	'games': 3
-    }]  
+    }],
+    error: false
   }
 
   handleAddUser = (event, firstName, lastName, username) => {
@@ -35,7 +37,9 @@ class App extends Component {
     const duplicate = this.state.users.filter((user) => (user.username === username));
     
     if(duplicate.length !== 0){
-    	alert('A user with this username already exists. Please choose something else!');
+      this.setState({
+      	error: true
+      })
     } else {
     	const user = {
           'firstName': firstName,
@@ -45,7 +49,8 @@ class App extends Component {
     	}
     
       this.setState((prevState) => ({
-          users: [...prevState.users, user]
+          users: [...prevState.users, user],
+          error: false
       }))
     }
   }
@@ -57,6 +62,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
+    	<ErrorMessage showMessage={this.state.error}/>
     	<AddUser addUserToList={this.handleAddUser}/>
     	<UserList users={this.state.users}/>
       </div>
